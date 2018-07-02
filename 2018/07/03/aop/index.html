@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://liuwangvip.github.io">
-  <title>相册 | 滴水穿石</title>
+  <title>aop | 滴水穿石</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
-<meta name="keywords" content="java，网络工程，jquery，just do it">
-<meta property="og:type" content="website">
-<meta property="og:title" content="相册">
-<meta property="og:url" content="https://liuwangvip.github.io/photos/index.html">
+  <meta name="description" content="AOP一、 概念1. 面向切面编程是一种编程范式，不是编程语言常见的编程范式：  面向过程编程 面向对象编程(OOP) 函数式编程 事件驱动编程 面向切面编程  2. 是OOP的补充，不是替代3. AOP的初衷 DRY  处理日志，权限，监控等公有和业务无关的逻辑，解决重复编写相同的逻辑。   SoC：  水平分离：展示层–&amp;gt;服务层–&amp;gt;持久层 垂直分离：OOP将公有的逻辑通过继承和组合">
+<meta name="keywords" content="java,spring,aop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aop">
+<meta property="og:url" content="https://liuwangvip.github.io/2018/07/03/aop/index.html">
 <meta property="og:site_name" content="滴水穿石">
-<meta property="og:description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
+<meta property="og:description" content="AOP一、 概念1. 面向切面编程是一种编程范式，不是编程语言常见的编程范式：  面向过程编程 面向对象编程(OOP) 函数式编程 事件驱动编程 面向切面编程  2. 是OOP的补充，不是替代3. AOP的初衷 DRY  处理日志，权限，监控等公有和业务无关的逻辑，解决重复编写相同的逻辑。   SoC：  水平分离：展示层–&amp;gt;服务层–&amp;gt;持久层 垂直分离：OOP将公有的逻辑通过继承和组合">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-02T17:12:43.317Z">
+<meta property="og:updated_time" content="2018-07-02T17:22:38.793Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相册">
-<meta name="twitter:description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
+<meta name="twitter:title" content="aop">
+<meta name="twitter:description" content="AOP一、 概念1. 面向切面编程是一种编程范式，不是编程语言常见的编程范式：  面向过程编程 面向对象编程(OOP) 函数式编程 事件驱动编程 面向切面编程  2. 是OOP的补充，不是替代3. AOP的初衷 DRY  处理日志，权限，监控等公有和业务无关的逻辑，解决重复编写相同的逻辑。   SoC：  水平分离：展示层–&amp;gt;服务层–&amp;gt;持久层 垂直分离：OOP将公有的逻辑通过继承和组合">
   
     <link rel="alternative" href="/atom.xml" title="滴水穿石" type="application/atom+xml">
   
@@ -155,42 +155,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-photos" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-aop" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      相册
+      aop
     </h1>
   
 
+        
+        <a href="/2018/07/03/aop/" class="archive-article-date">
+  	<time datetime="2018-07-02T17:20:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
+</a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" href="./ins.css">
-<div class="photos-btn-wrap">
-	<a class="photos-btn active" href="javascript:void(0)" target="_blank" rel="noopener">Ins</a>
-	<a class="photos-btn " href="javascript:void(0)" target="_blank" rel="noopener">摄影</a>
-</div>
-<div class="instagram itemscope">
-	<a href="https://www.instagram.com/litten225/" target="_blank" class="open-ins">图片来自instagram，正在加载中…</a>
-</div>
-<script>
-  (function() {
-    var loadScript = function(path) {
-      var $script = document.createElement('script')
-      document.getElementsByTagName('body')[0].appendChild($script)
-      $script.setAttribute('src', path)
-    }
-    setTimeout(function() {
-      loadScript('./ins.js')
-    }, 0)
-  })()
-</script>
+        <h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><h4 id="一、-概念"><a href="#一、-概念" class="headerlink" title="一、 概念"></a>一、 概念</h4><h4 id="1-面向切面编程是一种编程范式，不是编程语言"><a href="#1-面向切面编程是一种编程范式，不是编程语言" class="headerlink" title="1. 面向切面编程是一种编程范式，不是编程语言"></a>1. 面向切面编程是一种编程范式，不是编程语言</h4><p>常见的编程范式：</p>
+<ol>
+<li>面向过程编程</li>
+<li>面向对象编程(OOP)</li>
+<li>函数式编程</li>
+<li>事件驱动编程</li>
+<li>面向切面编程</li>
+</ol>
+<h4 id="2-是OOP的补充，不是替代"><a href="#2-是OOP的补充，不是替代" class="headerlink" title="2. 是OOP的补充，不是替代"></a>2. 是OOP的补充，不是替代</h4><h4 id="3-AOP的初衷"><a href="#3-AOP的初衷" class="headerlink" title="3. AOP的初衷"></a>3. AOP的初衷</h4><ol>
+<li><p>DRY</p>
+<blockquote>
+<p>处理日志，权限，监控等公有和业务无关的逻辑，解决重复编写相同的逻辑。</p>
+</blockquote>
+</li>
+<li><p>SoC：</p>
+<ol>
+<li>水平分离：展示层–&gt;服务层–&gt;持久层</li>
+<li>垂直分离：OOP将公有的逻辑通过继承和组合的方式进行抽离。</li>
+<li>切面分离：将功能性需求和非功能性需求分离。(日志，权限，监控等)</li>
+</ol>
+</li>
+</ol>
+<h4 id="4-AOP的好处"><a href="#4-AOP的好处" class="headerlink" title="4. AOP的好处"></a>4. AOP的好处</h4><ol>
+<li>集中处理某一关注点/横切逻辑（修改，删除，添加）。</li>
+<li>侵入性少：不修改业务代码，增加业务代码非业务功能。增强代码的可读性，可维护性。</li>
+</ol>
+<h4 id="5-AOP的应用场景（非业务需求）"><a href="#5-AOP的应用场景（非业务需求）" class="headerlink" title="5. AOP的应用场景（非业务需求）"></a>5. AOP的应用场景（非业务需求）</h4><ol>
+<li>权限控制</li>
+<li>缓存控制</li>
+<li>事务控制</li>
+<li>审计日志</li>
+<li>性能监控</li>
+<li>分布式追踪</li>
+<li>异常处理等</li>
+</ol>
+<h3 id="二、AOP使用"><a href="#二、AOP使用" class="headerlink" title="二、AOP使用"></a>二、AOP使用</h3><h4 id="Experssion"><a href="#Experssion" class="headerlink" title="Experssion"></a>Experssion</h4><ol>
+<li><p>匹配注解</p>
+<ol>
+<li><p>声明一个注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Target(ElementType.METHOD)</span><br><span class="line">public @interface Login &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明一个切面类，在切面类中编写pointCut，Advice</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    AuthService authService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Pointcut</span>(<span class="string">"@annotation(AdminOnly)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">adminOnly</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"adminOnly()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">check</span><span class="params">()</span></span>&#123;</span><br><span class="line">        authService.checkAccess();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在需要使用aop的方法上使用注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductServiceAop</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    AuthService authService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Login</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(Product product)</span></span>&#123;</span><br><span class="line">        <span class="comment">//business</span></span><br><span class="line">        System.out.println(<span class="string">"insert product"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Login</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">view</span><span class="params">(Long productId)</span></span>&#123;</span><br><span class="line">        <span class="comment">//business</span></span><br><span class="line">        System.out.println(<span class="string">"view product"</span>+productId);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>匹配包/类</p>
+<ol>
+<li>匹配类[ProductService中所有的方法（公有）]</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"within(org.study.service.ProductService)"</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>匹配包[org.study包及子包下所有类方法]</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"within(org.study..*)"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匹配对象</p>
+<ol>
+<li><p>匹配AOP对象的目标对象为指定类型的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"this(org.study.DemoDao))</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匹配实现IDao接口的目标对象（而不是aop代理后的对象)的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"target(org.study.IDao)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">targetDemo</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匹配所有以Service结尾的bean里头的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"bean(*Service)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beanDemo</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>匹配参数</p>
+<ol>
+<li><p>匹配任何以find开头，且只有一个Long参数的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"execution(**..find*(Long))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">argsDemo1</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>匹配任何只有一个Long参数方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"args(Long)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">argsDemo2</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>匹配任何以find开头且第一个参数为Long类型的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"execution(**..find*(Long,..))"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>匹配第一个参数为Long类型的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"args(Long,..)"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>匹配注解</p>
+<ol>
+<li><p>匹配方法标注有Login注解的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"annotation(org.study.security.Login)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Login</span><span class="params">()</span></span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>匹配标注有Beta的类底下的方法，要求annotation的RetentionPolicy级别为CLASS</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"@within(com.google.common.annotations.Beta)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annoWithinDemo</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>匹配标注有Respository的类底下的方法,要求annotation的RetentionPolicy级别RUNTIME</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"@Target(org.springframework.stereotype.Repository)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annoTargetDemo</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>匹配传入参数类标注有Repository注解的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"@args(org.springframework.stereotype.Repository)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annoArgsDemo</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>execution</p>
+<ol>
+<li><p>格式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">execution(</span><br><span class="line">modifier-pattern <span class="comment">//修饰符</span></span><br><span class="line">ret-type-pattern <span class="comment">//返回值</span></span><br><span class="line">declaring-type-pattern <span class="comment">//描述baoming</span></span><br><span class="line">name-pattern  <span class="comment">// 描述方法参数</span></span><br><span class="line"><span class="keyword">throws</span>-pattern <span class="comment">//匹配方法异常</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"execution(public * org.study.service.*Service*.*(..))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">match</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(<span class="string">"match() &amp;&amp; args(name)"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    System.out.println(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取放回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterReturning</span> (pointcut=<span class="string">"match()"</span>, returning=<span class="string">"result"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturn</span><span class="params">(String result)</span></span>&#123;</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterThrowing</span>(pointcut=<span class="string">"match()"</span>,throwing=<span class="string">"e"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AfterThrowing</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="Advice"><a href="#Advice" class="headerlink" title="Advice"></a>Advice</h4><blockquote>
+<p>织入代码的时机</p>
+</blockquote>
+<ol>
+<li><p>@Before</p>
+<blockquote>
+<p>前置通知：在方法前执行</p>
+</blockquote>
+</li>
+<li><p>@After(finally)</p>
+<blockquote>
+<p>后置通知：不管执行成功，还是失败，都执行</p>
+</blockquote>
+</li>
+<li><p>@AfterReturning</p>
+<blockquote>
+<p>放回通知，成功执行之后</p>
+</blockquote>
+</li>
+<li><p>@AfterThrowing</p>
+<blockquote>
+<p>异常通知，抛出异常之后</p>
+</blockquote>
+</li>
+<li><p>@Around</p>
+<blockquote>
+<p>环绕通知</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PointCut</span>(<span class="string">"execution(public * org.study.service.*Service*.*(..))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">match</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"><span class="meta">@Around</span> (<span class="string">"match()"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">arround</span><span class="params">()</span></span>&#123;</span><br><span class="line"> System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
 
@@ -230,6 +387,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">aop</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -280,7 +456,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://liuwangvip.github.io/photos/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://liuwangvip.github.io/2018/07/03/aop/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,6 +468,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2018/07/03/aop原理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          aop原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/04/java-reflect/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java_reflect</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -313,7 +508,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AOP"><span class="toc-number">1.</span> <span class="toc-text">AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-概念"><span class="toc-number">1.1.</span> <span class="toc-text">一、 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-面向切面编程是一种编程范式，不是编程语言"><span class="toc-number">1.2.</span> <span class="toc-text">1. 面向切面编程是一种编程范式，不是编程语言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-是OOP的补充，不是替代"><span class="toc-number">1.3.</span> <span class="toc-text">2. 是OOP的补充，不是替代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-AOP的初衷"><span class="toc-number">1.4.</span> <span class="toc-text">3. AOP的初衷</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-AOP的好处"><span class="toc-number">1.5.</span> <span class="toc-text">4. AOP的好处</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-AOP的应用场景（非业务需求）"><span class="toc-number">1.6.</span> <span class="toc-text">5. AOP的应用场景（非业务需求）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、AOP使用"><span class="toc-number">2.</span> <span class="toc-text">二、AOP使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Experssion"><span class="toc-number">2.1.</span> <span class="toc-text">Experssion</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Advice"><span class="toc-number">2.2.</span> <span class="toc-text">Advice</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -323,6 +518,16 @@
 </aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -345,7 +550,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

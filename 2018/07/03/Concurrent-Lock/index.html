@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://liuwangvip.github.io">
-  <title>相册 | 滴水穿石</title>
+  <title>Concurrent-Lock | 滴水穿石</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
-<meta name="keywords" content="java，网络工程，jquery，just do it">
-<meta property="og:type" content="website">
-<meta property="og:title" content="相册">
-<meta property="og:url" content="https://liuwangvip.github.io/photos/index.html">
+  <meta name="description" content="多线程之Concurrent一、 LockLock接口定义了锁的几个基本方法：  lock() unlock() trylock() new Condition  12345678Lock lock;lock.lock()    try&amp;#123;        //TODO    &amp;#125;finallly&amp;#123;    lock.unlock();&amp;#125; 二、 AbstractQu">
+<meta name="keywords" content="java,concurrent,AQS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Concurrent-Lock">
+<meta property="og:url" content="https://liuwangvip.github.io/2018/07/03/Concurrent-Lock/index.html">
 <meta property="og:site_name" content="滴水穿石">
-<meta property="og:description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
+<meta property="og:description" content="多线程之Concurrent一、 LockLock接口定义了锁的几个基本方法：  lock() unlock() trylock() new Condition  12345678Lock lock;lock.lock()    try&amp;#123;        //TODO    &amp;#125;finallly&amp;#123;    lock.unlock();&amp;#125; 二、 AbstractQu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-02T17:12:43.317Z">
+<meta property="og:image" content="https://liuwangvip.github.io/2018/07/03/Concurrent-Lock/AQS.png">
+<meta property="og:updated_time" content="2018-07-02T17:36:04.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相册">
-<meta name="twitter:description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
+<meta name="twitter:title" content="Concurrent-Lock">
+<meta name="twitter:description" content="多线程之Concurrent一、 LockLock接口定义了锁的几个基本方法：  lock() unlock() trylock() new Condition  12345678Lock lock;lock.lock()    try&amp;#123;        //TODO    &amp;#125;finallly&amp;#123;    lock.unlock();&amp;#125; 二、 AbstractQu">
+<meta name="twitter:image" content="https://liuwangvip.github.io/2018/07/03/Concurrent-Lock/AQS.png">
   
     <link rel="alternative" href="/atom.xml" title="滴水穿石" type="application/atom+xml">
   
@@ -155,42 +157,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-photos" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Concurrent-Lock" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      相册
+      Concurrent-Lock
     </h1>
   
 
+        
+        <a href="/2018/07/03/Concurrent-Lock/" class="archive-article-date">
+  	<time datetime="2018-07-02T17:29:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
+</a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" href="./ins.css">
-<div class="photos-btn-wrap">
-	<a class="photos-btn active" href="javascript:void(0)" target="_blank" rel="noopener">Ins</a>
-	<a class="photos-btn " href="javascript:void(0)" target="_blank" rel="noopener">摄影</a>
-</div>
-<div class="instagram itemscope">
-	<a href="https://www.instagram.com/litten225/" target="_blank" class="open-ins">图片来自instagram，正在加载中…</a>
-</div>
-<script>
-  (function() {
-    var loadScript = function(path) {
-      var $script = document.createElement('script')
-      document.getElementsByTagName('body')[0].appendChild($script)
-      $script.setAttribute('src', path)
-    }
-    setTimeout(function() {
-      loadScript('./ins.js')
-    }, 0)
-  })()
-</script>
+        <h3 id="多线程之Concurrent"><a href="#多线程之Concurrent" class="headerlink" title="多线程之Concurrent"></a>多线程之Concurrent</h3><h4 id="一、-Lock"><a href="#一、-Lock" class="headerlink" title="一、 Lock"></a>一、 Lock</h4><p>Lock接口定义了锁的几个基本方法：</p>
+<ol>
+<li>lock()</li>
+<li>unlock()</li>
+<li>trylock()</li>
+<li>new Condition</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Lock lock;</span><br><span class="line">lock.lock()</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">//TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">finallly&#123;</span><br><span class="line">    lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="二、-AbstractQueuedSynchronizer"><a href="#二、-AbstractQueuedSynchronizer" class="headerlink" title="二、 AbstractQueuedSynchronizer"></a>二、 AbstractQueuedSynchronizer</h4><p>​    并发工具包的作者（Doug Lea)希望它成为实现同步需求的基础。抽象类AbstractQueuedSynchronizer是用来构建锁和其他同步框架的基础。</p>
+<p>​    使用一个int成员变量的state来表示同步状态的获取；通过一个FIFO队列来完成对state通过状态获取线程的排队。</p>
+<img src="/2018/07/03/Concurrent-Lock/AQS.png" title="AQS">
+<h4 id="重写同步器锁获取和释放的方法"><a href="#重写同步器锁获取和释放的方法" class="headerlink" title="重写同步器锁获取和释放的方法"></a>重写同步器锁获取和释放的方法</h4><ol>
+<li>独占式</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryRelease</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>共享式</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">tryAcquireShared</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryReleaseShared</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isHeldExclusively</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>同步器通过state来控制同步。使用同步器已经实现好三个方法来达到对同步的控制。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getState</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> state;&#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(<span class="keyword">int</span> newState)</span> </span>&#123;state = newState;&#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">compareAndSetState</span><span class="params">(<span class="keyword">int</span> expect, <span class="keyword">int</span> update)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="keyword">this</span>, stateOffset, expect, update);&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>通过继承同步器来实现Lock接口的锁的获取和释放。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> liuwang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/6/6</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoLock</span> <span class="keyword">implements</span> <span class="title">Lock</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Sync</span> <span class="keyword">extends</span> <span class="title">AbstractQueuedSynchronizer</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="title">Sync</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//TODO</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.tryAcquire(arg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryRelease</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//TODO</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.tryRelease(arg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">tryAcquireShared</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//TODO</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.tryAcquireShared(arg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">tryReleaseShared</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//TODO</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.tryReleaseShared(arg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isHeldExclusively</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">//TODO</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.isHeldExclusively();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> Sync sync =<span class="keyword">new</span> Sync();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        sync.acquire(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lockInterruptibly</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        sync.acquireInterruptibly(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">tryLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">tryLock</span><span class="params">(<span class="keyword">long</span> time, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sync.tryAcquire(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        sync.release(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Condition <span class="title">newCondition</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="三、ReentrantLock"><a href="#三、ReentrantLock" class="headerlink" title="三、ReentrantLock"></a>三、ReentrantLock</h4><blockquote>
+<p>可重入锁</p>
+</blockquote>
+<h4 id="四、WriteReadLock"><a href="#四、WriteReadLock" class="headerlink" title="四、WriteReadLock"></a>四、WriteReadLock</h4><blockquote>
+<p>读写锁</p>
+</blockquote>
+<h4 id="五、LockSupport"><a href="#五、LockSupport" class="headerlink" title="五、LockSupport"></a>五、LockSupport</h4><blockquote>
+<p>提供了直接对线程进行阻塞和唤醒的功能</p>
+</blockquote>
+<h4 id="六、Condition"><a href="#六、Condition" class="headerlink" title="六、Condition"></a>六、Condition</h4><blockquote>
+<p>使关联的锁等待，唤醒。</p>
+</blockquote>
 
       
 
@@ -230,6 +256,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">concurrent</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AQS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -280,7 +325,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://liuwangvip.github.io/photos/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://liuwangvip.github.io/2018/07/03/Concurrent-Lock/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,6 +337,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2018/07/03/HashMap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HashMap
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/03/多线程之JMM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多线程之JMM</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -313,7 +377,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程之Concurrent"><span class="toc-number">1.</span> <span class="toc-text">多线程之Concurrent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-Lock"><span class="toc-number">1.1.</span> <span class="toc-text">一、 Lock</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、-AbstractQueuedSynchronizer"><span class="toc-number">1.2.</span> <span class="toc-text">二、 AbstractQueuedSynchronizer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重写同步器锁获取和释放的方法"><span class="toc-number">1.3.</span> <span class="toc-text">重写同步器锁获取和释放的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、ReentrantLock"><span class="toc-number">1.4.</span> <span class="toc-text">三、ReentrantLock</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、WriteReadLock"><span class="toc-number">1.5.</span> <span class="toc-text">四、WriteReadLock</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、LockSupport"><span class="toc-number">1.6.</span> <span class="toc-text">五、LockSupport</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六、Condition"><span class="toc-number">1.7.</span> <span class="toc-text">六、Condition</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -323,6 +387,16 @@
 </aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -345,7 +419,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
