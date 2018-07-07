@@ -8,19 +8,16 @@
   <link rel="dns-prefetch" href="https://liuwangvip.github.io">
   <title>Concurrent-Lock | Charle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多线程之Concurrent一、 LockLock接口定义了锁的几个基本方法：  lock() unlock() trylock() new Condition  12345678Lock lock;lock.lock()    try&amp;#123;        //TODO    &amp;#125;finallly&amp;#123;    lock.unlock();&amp;#125; 二、 AbstractQu">
-<meta name="keywords" content="java,concurrent,AQS">
+  <meta name="keywords" content="java,concurrent,AQS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Concurrent-Lock">
 <meta property="og:url" content="https://liuwangvip.github.io/2018/07/03/Concurrent-Lock/index.html">
 <meta property="og:site_name" content="Charle">
-<meta property="og:description" content="多线程之Concurrent一、 LockLock接口定义了锁的几个基本方法：  lock() unlock() trylock() new Condition  12345678Lock lock;lock.lock()    try&amp;#123;        //TODO    &amp;#125;finallly&amp;#123;    lock.unlock();&amp;#125; 二、 AbstractQu">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://liuwangvip.github.io/2018/07/03/Concurrent-Lock/AQS.png">
-<meta property="og:updated_time" content="2018-07-07T10:50:46.996Z">
+<meta property="og:updated_time" content="2018-07-07T17:11:41.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Concurrent-Lock">
-<meta name="twitter:description" content="多线程之Concurrent一、 LockLock接口定义了锁的几个基本方法：  lock() unlock() trylock() new Condition  12345678Lock lock;lock.lock()    try&amp;#123;        //TODO    &amp;#125;finallly&amp;#123;    lock.unlock();&amp;#125; 二、 AbstractQu">
 <meta name="twitter:image" content="https://liuwangvip.github.io/2018/07/03/Concurrent-Lock/AQS.png">
   
     <link rel="alternative" href="/atom.xml" title="Charle" type="application/atom+xml">
@@ -177,7 +174,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="多线程之Concurrent"><a href="#多线程之Concurrent" class="headerlink" title="多线程之Concurrent"></a>多线程之Concurrent</h3><h4 id="一、-Lock"><a href="#一、-Lock" class="headerlink" title="一、 Lock"></a>一、 Lock</h4><p>Lock接口定义了锁的几个基本方法：</p>
+        <hr>
+<a id="more"></a>
+<h3 id="多线程之Concurrent"><a href="#多线程之Concurrent" class="headerlink" title="多线程之Concurrent"></a>多线程之Concurrent</h3><h4 id="一、-Lock"><a href="#一、-Lock" class="headerlink" title="一、 Lock"></a>一、 Lock</h4><p>Lock接口定义了锁的几个基本方法：</p>
 <ol>
 <li>lock()</li>
 <li>unlock()</li>
@@ -188,7 +187,6 @@
 <h4 id="二、-AbstractQueuedSynchronizer"><a href="#二、-AbstractQueuedSynchronizer" class="headerlink" title="二、 AbstractQueuedSynchronizer"></a>二、 AbstractQueuedSynchronizer</h4><p>​    并发工具包的作者（Doug Lea)希望它成为实现同步需求的基础。抽象类AbstractQueuedSynchronizer是用来构建锁和其他同步框架的基础。</p>
 <p>​    使用一个int成员变量的state来表示同步状态的获取；通过一个FIFO队列来完成对state通过状态获取线程的排队。</p>
 <img src="/2018/07/03/Concurrent-Lock/AQS.png" title="AQS">
-<a id="more"></a>
 <h4 id="重写同步器锁获取和释放的方法"><a href="#重写同步器锁获取和释放的方法" class="headerlink" title="重写同步器锁获取和释放的方法"></a>重写同步器锁获取和释放的方法</h4><ol>
 <li>独占式</li>
 </ol>
@@ -494,15 +492,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ConcurrentHashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AQS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ConcurrentHashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,11 +556,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">JMM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JMM</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
