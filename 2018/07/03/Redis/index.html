@@ -6,20 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://liuwangvip.github.io">
-  <title>Redis | Charle</title>
+  <title>redis 主从集群 | Charle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="八小时之内求生存，八小时之外谋发展">
-<meta name="keywords" content="java，网络工程，jquery，just do it">
+  <meta name="keywords" content="redis,主从配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis">
+<meta property="og:title" content="redis 主从集群">
 <meta property="og:url" content="https://liuwangvip.github.io/2018/07/03/Redis/index.html">
 <meta property="og:site_name" content="Charle">
-<meta property="og:description" content="八小时之内求生存，八小时之外谋发展">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-02T17:48:49.551Z">
+<meta property="og:updated_time" content="2018-07-07T11:30:09.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis">
-<meta name="twitter:description" content="八小时之内求生存，八小时之外谋发展">
+<meta name="twitter:title" content="redis 主从集群">
   
     <link rel="alternative" href="/atom.xml" title="Charle" type="application/atom+xml">
   
@@ -162,7 +159,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Redis
+      redis 主从集群
     </h1>
   
 
@@ -175,7 +172,74 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <hr>
+<a id="more"></a>
+<h5 id="一、复制多份Redis方式部署"><a href="#一、复制多份Redis方式部署" class="headerlink" title="一、复制多份Redis方式部署"></a>一、复制多份Redis方式部署</h5><ul>
+<li><h5 id="slave-从redis-配置"><a href="#slave-从redis-配置" class="headerlink" title="slave(从redis)配置"></a>slave(从redis)配置</h5></li>
+</ul>
+<blockquote>
+<p>设置为守护进程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deamonize yes</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改端口</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port 6380</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置主redis的ip和端口</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slaveof 192.168.75.128 6379</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置从redis只能读</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slave-read-only yes</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置主redis的密码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">masterauth 123456</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>进程目录</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pidfile /var/run/redis_6379.pid</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改生成默认日志文件位置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logfile &quot;/opt/data/logs/redis_6380.log&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置持久化文件存放位置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir /opt/data/redisData_6380</span><br></pre></td></tr></table></figure>
+<h5 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h5><ul>
+<li>日志，数据存放目录结构(/opt/data/)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── log</span><br><span class="line">│   ├── redis_6380.log</span><br><span class="line">│   ├── redis_6381.log</span><br><span class="line">│   └── redis.log</span><br><span class="line">├── redisData</span><br><span class="line">│   └── dump.rdb</span><br><span class="line">├── redisData_6380</span><br><span class="line">│   └── dump.rdb</span><br><span class="line">└── redisData_6381</span><br><span class="line">    └── dump.rdb</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置文件存放目录结构(/etc/redis)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── 6379.conf</span><br><span class="line">├── 6380.conf</span><br><span class="line">├── 6381.conf</span><br><span class="line">└── sentinel.conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动脚本存放目录结构(/etc/init.d/)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── redisd-master</span><br><span class="line">├── redisd-slaveOne</span><br><span class="line">├── redisd-slaveTwo</span><br><span class="line">└── redisd-sentinel</span><br></pre></td></tr></table></figure>
+<ul>
+<li>redis 源码存放目录结构(/opt/software/)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── redis-master</span><br><span class="line">├── redis-slaveOne</span><br><span class="line">└── redis-slaveTwo</span><br></pre></td></tr></table></figure>
+<h5 id="二、单Redis，多实例方式部署"><a href="#二、单Redis，多实例方式部署" class="headerlink" title="二、单Redis，多实例方式部署"></a>二、单Redis，多实例方式部署</h5><blockquote>
+<p>不用复制多份redis，其他配置同上。让一个redis在不同的配置文件下启动</p>
+</blockquote>
+<h5 id="三、-配置哨兵"><a href="#三、-配置哨兵" class="headerlink" title="三、 配置哨兵"></a>三、 配置哨兵</h5><ol>
+<li>复制redis安装目录下的sentinel.conf 到指定目录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cp /opt/software/redis-4.0.9/sentinel.conf /etc/redis/sentinel.conf</span><br></pre></td></tr></table></figure>
+<ol>
+<li>修改sentinel.conf 配置文件 配置哨兵监听master(主redis),从master会自动被监听到</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sentinel monitor mymaster 192.168.75.128 6379 1</span><br></pre></td></tr></table></figure>
+<p>配置master,slave(主从redis)的密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sentinel auth-pass mymaster 123456</span><br></pre></td></tr></table></figure>
+<p>哨兵的监听端口(配置多个哨兵需要修改)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port 26379</span><br></pre></td></tr></table></figure>
       
 
       
@@ -214,6 +278,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">主从配置</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -278,9 +357,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/07/07/正则表达式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          正则表达式
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/07/03/Mybatis/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mybatis</div>
+      <div class="article-nav-title">Mybatis多数据源配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -307,7 +395,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、复制多份Redis方式部署"><span class="toc-number">1.</span> <span class="toc-text">一、复制多份Redis方式部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#slave-从redis-配置"><span class="toc-number">2.</span> <span class="toc-text">slave(从redis)配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#目录结构"><span class="toc-number">3.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、单Redis，多实例方式部署"><span class="toc-number">4.</span> <span class="toc-text">二、单Redis，多实例方式部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、-配置哨兵"><span class="toc-number">5.</span> <span class="toc-text">三、 配置哨兵</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -423,11 +511,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ConcurrentHashMap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AQS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">hashMap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ORM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">主从配置</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,11 +575,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JMM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">regex</a>
               </li>
             
             <div class="clearfix"></div>
