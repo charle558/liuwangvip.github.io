@@ -176,121 +176,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="事务ACID"><a href="#事务ACID" class="headerlink" title="事务ACID"></a>事务ACID</h4><blockquote>
-<p>事务：锁和并发；</p>
-</blockquote>
-<ol>
-<li><p>原子性</p>
-<blockquote>
-<p>要么全部成功，要么全部失败；原子性只有两种状态。一般通过undo log保存每个操作之前的状态</p>
-</blockquote>
-</li>
-<li><p>一致性</p>
-<blockquote>
-<p>保证可见性。一般通过锁保证并发的每个线程都可以看到其他线程的更改。</p>
-<p>避免线程应该看不到其他线程的更改，覆盖其他线程更改。</p>
-</blockquote>
-</li>
-<li><p>隔离级别</p>
-<ol>
-<li><p>序列化读写（Reentrantlock,synchnoize)</p>
-<blockquote>
-<p>通过给读和写都加同一把锁，保证读写操作每次只有一个操作发生。</p>
-</blockquote>
-</li>
-<li><p>可重复读(ReentrantReadWriteLock)</p>
-<blockquote>
-<p>通过给读加读锁，写加写锁。达到读读可以并行</p>
-<p>原因：即使其他线程没有感知到有其他线程在读（读不会修改数据），不会影响其他读的结果。</p>
-</blockquote>
-</li>
-<li><p>读已提交(ReentrantReadWriteLock)</p>
-<blockquote>
-<p>在重复读情况下，支持将读锁升级为写锁。达到 读读并行，读写并行。</p>
-<p>问题：同事务的两次读可能不一致。</p>
-</blockquote>
-</li>
-<li><p>读未提交</p>
-<blockquote>
-<p>只给写加锁，读不加锁。读读并行，读写并行，写读并行。写写串行。</p>
-<p>问题：读到写过程中值。</p>
-</blockquote>
-</li>
-<li><p>快照隔离级别(SNAPSHOT ISOLATION)</p>
-<blockquote>
-<p>也叫多版本并发控制(MVCC)</p>
-</blockquote>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原理：copy on write</span><br><span class="line">    在写的时候：将原来的数据复制一份，然后生成一个新版本的数据。达到读未提交的并行度的同时，也解	  决了会读到过程数据问题。现在只能读到写修改前版本的数据或者写完成后版本的数据。</span><br><span class="line">问题：log中维护数据很多的版本，导致数据log变得更大。</span><br></pre></td></tr></table></figure>
-<h4 id="问题：-那么写和写能不能并行？"><a href="#问题：-那么写和写能不能并行？" class="headerlink" title="问题： 那么写和写能不能并行？"></a>问题： 那么写和写能不能并行？</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-<ol>
-<li><p>持久性</p>
-<p>事务完成以后(提交:commit):该事务对数据库所做的更改持久的保存到数据库中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 磁盘损坏导致数据丢失：通过RAID</span><br><span class="line"><span class="number">2</span>.内存中数据易丢失：<span class="number">1</span>. commit后写到磁盘(磁盘io比较慢）<span class="number">2</span>.内存的数据打包到磁盘(代价是延迟)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="事务典型异常的应对策略"><a href="#事务典型异常的应对策略" class="headerlink" title="事务典型异常的应对策略"></a>事务典型异常的应对策略</h4><ol>
-<li><p>业务属性不匹配</p>
-<blockquote>
-<p>回滚(rollback)</p>
-</blockquote>
-</li>
-<li><p>系统DOWN机</p>
-<blockquote>
-<p>事务原子操作的标记commit；</p>
-<p>重启后进入recovery，这个时候系统是不能被访问的：对commit的事务继续提交，没有commit的事务回滚</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="事务的调优原则"><a href="#事务的调优原则" class="headerlink" title="事务的调优原则"></a>事务的调优原则</h4><ol>
-<li><p>减少锁的范围(表锁-&gt;行锁)</p>
-</li>
-<li><p>增加锁上并行的线程数（可重复读）</p>
-</li>
-<li><p>选择合适的锁</p>
-<ol>
-<li><p>悲观锁</p>
-<blockquote>
-<p>使线程进入blocking状态，然后清除cpu中存储线程的信息；加载其他线程的信息。</p>
-<p>适合并发冲突较多的情况</p>
-</blockquote>
-</li>
-<li><p>乐观锁</p>
-<blockquote>
-<p>通自旋来保证数据的准确性。</p>
-<p>适用数据冲突较少的情况</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><p>选择正确的隔离级别</p>
-<p>性能由低到高：序列化，读未提交，读已提交，MVCC。</p>
-<p>代价和性能做出选择</p>
-</li>
-</ol>
-<h4 id="数据库锁"><a href="#数据库锁" class="headerlink" title="数据库锁"></a>数据库锁</h4><ol>
-<li><p>2PL(两阶段锁)</p>
-</li>
-<li><p>U锁</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update set a= a+<span class="number">1</span> where id=<span class="number">100</span></span><br><span class="line">通过有两个线程对id <span class="number">100</span>的数据进行修改，就会死锁。</span><br><span class="line">数据库将第一次读锁升级为写锁。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>常见解决死锁的方案</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 设置锁等待超时</span><br><span class="line"><span class="number">2</span>. 碰撞检测法</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><blockquote>
-<p>分布式比原来的多了什么呢？网络</p>
-</blockquote>
-<ol>
-<li>优点：去中心化；无限扩展；避免单点故障</li>
-<li>缺点：网络的延迟；数据要保存多份；网络的不可靠。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">常见的方案：消息</span><br><span class="line"><span class="number">1</span>. 通过将消息复制多份，解决数据存多份。</span><br><span class="line"><span class="number">2</span>. 通过ack和超时，解决网络的不可靠</span><br></pre></td></tr></table></figure>
-<p>未完。。。。。。。。</p>
-
+        <hr>
+        
+          <a class="article-more-a" href="/2018/07/09/事务/#more">more >></a>
+        
       
 
       
@@ -1188,10 +1077,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
              
@@ -1204,11 +1089,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">主从配置</a>
+                <a href="javascript:void(0)" class="js-tag color3">hashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1217,6 +1098,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ORM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">主从配置</a>
               </li>
              
               <li class="article-tag-list-item">
