@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://liuwangvip.github.io">
-  <title>Tag: cxf | Charle</title>
+  <title>事务 | Charle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="八小时之内求生存，八小时之外谋发展">
-<meta name="keywords" content="java，网络工程，jquery，just do it">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Charle">
-<meta property="og:url" content="https://liuwangvip.github.io/tags/cxf/index.html">
+  <meta name="description" content="概念事务ACID 事务：锁和并发；   原子性  要么全部成功，要么全部失败；原子性只有两种状态。一般通过undo log保存每个操作之前的状态   一致性  保证可见性。一般通过锁保证并发的每个线程都可以看到其他线程的更改。 避免线程应该看不到其他线程的更改，覆盖其他线程更改。   隔离级别  序列化读写（Reentrantlock,synchnoize)  通过给读和写都加同一把锁，保证读写操">
+<meta name="keywords" content="java,事务,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事务">
+<meta property="og:url" content="https://liuwangvip.github.io/2018/07/09/事务/index.html">
 <meta property="og:site_name" content="Charle">
-<meta property="og:description" content="八小时之内求生存，八小时之外谋发展">
+<meta property="og:description" content="概念事务ACID 事务：锁和并发；   原子性  要么全部成功，要么全部失败；原子性只有两种状态。一般通过undo log保存每个操作之前的状态   一致性  保证可见性。一般通过锁保证并发的每个线程都可以看到其他线程的更改。 避免线程应该看不到其他线程的更改，覆盖其他线程更改。   隔离级别  序列化读写（Reentrantlock,synchnoize)  通过给读和写都加同一把锁，保证读写操">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-09T16:17:30.321Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Charle">
-<meta name="twitter:description" content="八小时之内求生存，八小时之外谋发展">
+<meta name="twitter:title" content="事务">
+<meta name="twitter:description" content="概念事务ACID 事务：锁和并发；   原子性  要么全部成功，要么全部失败；原子性只有两种状态。一般通过undo log保存每个操作之前的状态   一致性  保证可见性。一般通过锁保证并发的每个线程都可以看到其他线程的更改。 避免线程应该看不到其他线程的更改，覆盖其他线程更改。   隔离级别  序列化读写（Reentrantlock,synchnoize)  通过给读和写都加同一把锁，保证读写操">
   
     <link rel="alternative" href="/atom.xml" title="Charle" type="application/atom+xml">
   
@@ -154,36 +155,179 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-事务" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/26/webservice/" class="archive-article-date">
-  	<time datetime="2018-03-26T07:17:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/26/webservice/">Spring boot +Apache CXF 实现webservice</a>
+    <h1 class="article-title" itemprop="name">
+      事务
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/07/09/事务/" class="archive-article-date">
+  	<time datetime="2018-07-09T13:30:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="事务ACID"><a href="#事务ACID" class="headerlink" title="事务ACID"></a>事务ACID</h4><blockquote>
+<p>事务：锁和并发；</p>
+</blockquote>
+<ol>
+<li><p>原子性</p>
+<blockquote>
+<p>要么全部成功，要么全部失败；原子性只有两种状态。一般通过undo log保存每个操作之前的状态</p>
+</blockquote>
+</li>
+<li><p>一致性</p>
+<blockquote>
+<p>保证可见性。一般通过锁保证并发的每个线程都可以看到其他线程的更改。</p>
+<p>避免线程应该看不到其他线程的更改，覆盖其他线程更改。</p>
+</blockquote>
+</li>
+<li><p>隔离级别</p>
+<ol>
+<li><p>序列化读写（Reentrantlock,synchnoize)</p>
+<blockquote>
+<p>通过给读和写都加同一把锁，保证读写操作每次只有一个操作发生。</p>
+</blockquote>
+</li>
+<li><p>可重复读(ReentrantReadWriteLock)</p>
+<blockquote>
+<p>通过给读加读锁，写加写锁。达到读读可以并行</p>
+<p>原因：即使其他线程没有感知到有其他线程在读（读不会修改数据），不会影响其他读的结果。</p>
+</blockquote>
+</li>
+<li><p>读已提交(ReentrantReadWriteLock)</p>
+<blockquote>
+<p>在重复读情况下，支持将读锁升级为写锁。达到 读读并行，读写并行。</p>
+<p>问题：同事务的两次读可能不一致。</p>
+</blockquote>
+</li>
+<li><p>读未提交</p>
+<blockquote>
+<p>只给写加锁，读不加锁。读读并行，读写并行，写读并行。写写串行。</p>
+<p>问题：读到写过程中值。</p>
+</blockquote>
+</li>
+<li><p>快照隔离级别(SNAPSHOT ISOLATION)</p>
+<blockquote>
+<p>也叫多版本并发控制(MVCC)</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原理：copy on write</span><br><span class="line">    在写的时候：将原来的数据复制一份，然后生成一个新版本的数据。达到读未提交的并行度的同时，也解	  决了会读到过程数据问题。现在只能读到写修改前版本的数据或者写完成后版本的数据。</span><br><span class="line">问题：log中维护数据很多的版本，导致数据log变得更大。</span><br></pre></td></tr></table></figure>
+<h4 id="问题：-那么写和写能不能并行？"><a href="#问题：-那么写和写能不能并行？" class="headerlink" title="问题： 那么写和写能不能并行？"></a>问题： 那么写和写能不能并行？</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>持久性</p>
+<p>事务完成以后(提交:commit):该事务对数据库所做的更改持久的保存到数据库中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 磁盘损坏导致数据丢失：通过RAID</span><br><span class="line"><span class="number">2</span>.内存中数据易丢失：<span class="number">1</span>. commit后写到磁盘(磁盘io比较慢）<span class="number">2</span>.内存的数据打包到磁盘(代价是延迟)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="事务典型异常的应对策略"><a href="#事务典型异常的应对策略" class="headerlink" title="事务典型异常的应对策略"></a>事务典型异常的应对策略</h4><ol>
+<li><p>业务属性不匹配</p>
+<blockquote>
+<p>回滚(rollback)</p>
+</blockquote>
+</li>
+<li><p>系统DOWN机</p>
+<blockquote>
+<p>事务原子操作的标记commit；</p>
+<p>重启后进入recovery，这个时候系统是不能被访问的：对commit的事务继续提交，没有commit的事务回滚</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="事务的调优原则"><a href="#事务的调优原则" class="headerlink" title="事务的调优原则"></a>事务的调优原则</h4><ol>
+<li><p>减少锁的范围(表锁-&gt;行锁)</p>
+</li>
+<li><p>增加锁上并行的线程数（可重复读）</p>
+</li>
+<li><p>选择合适的锁</p>
+<ol>
+<li><p>悲观锁</p>
+<blockquote>
+<p>使线程进入blocking状态，然后清除cpu中存储线程的信息；加载其他线程的信息。</p>
+<p>适合并发冲突较多的情况</p>
+</blockquote>
+</li>
+<li><p>乐观锁</p>
+<blockquote>
+<p>通自旋来保证数据的准确性。</p>
+<p>适用数据冲突较少的情况</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>选择正确的隔离级别</p>
+<p>性能由低到高：序列化，读未提交，读已提交，MVCC。</p>
+<p>代价和性能做出选择</p>
+</li>
+</ol>
+<h4 id="数据库锁"><a href="#数据库锁" class="headerlink" title="数据库锁"></a>数据库锁</h4><ol>
+<li><p>2PL(两阶段锁)</p>
+</li>
+<li><p>U锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update set a= a+<span class="number">1</span> where id=<span class="number">100</span></span><br><span class="line">通过有两个线程对id <span class="number">100</span>的数据进行修改，就会死锁。</span><br><span class="line">数据库将第一次读锁升级为写锁。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常见解决死锁的方案</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 设置锁等待超时</span><br><span class="line"><span class="number">2</span>. 碰撞检测法</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><blockquote>
+<p>分布式比原来的多了什么呢？网络</p>
+</blockquote>
+<ol>
+<li>优点：去中心化；无限扩展；避免单点故障</li>
+<li>缺点：网络的延迟；数据要保存多份；网络的不可靠。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">常见的方案：消息</span><br><span class="line"><span class="number">1</span>. 通过将消息复制多份，解决数据存多份。</span><br><span class="line"><span class="number">2</span>. 通过ack和超时，解决网络的不可靠</span><br></pre></td></tr></table></figure>
+<p>未完。。。。。。。。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -193,29 +337,129 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">webservice</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">事务</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">cxf</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://liuwangvip.github.io/2018/07/09/事务/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/07/07/正则表达式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">正则表达式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#事务ACID"><span class="toc-number">1.1.</span> <span class="toc-text">事务ACID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题：-那么写和写能不能并行？"><span class="toc-number">1.2.</span> <span class="toc-text">问题： 那么写和写能不能并行？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事务典型异常的应对策略"><span class="toc-number">1.3.</span> <span class="toc-text">事务典型异常的应对策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事务的调优原则"><span class="toc-number">1.4.</span> <span class="toc-text">事务的调优原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库锁"><span class="toc-number">1.5.</span> <span class="toc-text">数据库锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式事务"><span class="toc-number">2.</span> <span class="toc-text">分布式事务</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -238,9 +482,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
