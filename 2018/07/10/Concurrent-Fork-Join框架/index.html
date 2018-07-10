@@ -8,18 +8,19 @@
   <link rel="dns-prefetch" href="https://liuwangvip.github.io">
   <title>Concurrent-Fork/Join框架 | Charle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="八小时之内求生存，八小时之外谋发展">
-<meta name="keywords" content="java，网络工程，jquery，just do it">
+  <meta name="keywords" content="java,fork&#x2F;join">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Concurrent-Fork&#x2F;Join框架">
 <meta property="og:url" content="https://liuwangvip.github.io/2018/07/10/Concurrent-Fork-Join框架/index.html">
 <meta property="og:site_name" content="Charle">
-<meta property="og:description" content="八小时之内求生存，八小时之外谋发展">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-10T15:03:44.002Z">
+<meta property="og:image" content="https://liuwangvip.github.io/2018/07/10/Concurrent-Fork-Join框架/ForkJoin类图.png">
+<meta property="og:image" content="https://liuwangvip.github.io/2018/07/10/Concurrent-Fork-Join框架/ForkJoin类1.png">
+<meta property="og:image" content="https://liuwangvip.github.io/2018/07/10/Concurrent-Fork-Join框架/ForkJoin.jpg">
+<meta property="og:updated_time" content="2018-07-10T18:23:08.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Concurrent-Fork&#x2F;Join框架">
-<meta name="twitter:description" content="八小时之内求生存，八小时之外谋发展">
+<meta name="twitter:image" content="https://liuwangvip.github.io/2018/07/10/Concurrent-Fork-Join框架/ForkJoin类图.png">
   
     <link rel="alternative" href="/atom.xml" title="Charle" type="application/atom+xml">
   
@@ -175,7 +176,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <hr>
+<a id="more"></a>
+<img src="/2018/07/10/Concurrent-Fork-Join框架/ForkJoin类图.png" title="Fork/Join">
+<img src="/2018/07/10/Concurrent-Fork-Join框架/ForkJoin类1.png" title="Fork/Join">
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
+<p>ForK/Join框架是JDK 7提供的一个用于并行执行任务的框架，把一个大任务分割成若干个小任务，最终汇聚每个小任务结果得到大任务结果的框架。Fork：把大任务切分成若干子任务并行执行；Join：合并这些子任务的执行结果，最后得到大任务的结果。</p>
+</blockquote>
+<img src="/2018/07/10/Concurrent-Fork-Join框架/ForkJoin.jpg" title="Fork/Join">
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>分割任务</p>
+<blockquote>
+<p>首先需要一个Fork类把大任务分割成若干子任务，可能子任务还是很大，再来切割。</p>
+</blockquote>
+</li>
+<li><p>执行任务合并结果</p>
+<blockquote>
+<p>分割的子任务分别放在双端队列里，然后启动几个线程分别从双端队列中获取任务执行。子任务完成后的结果统一放在一个队列里。启动一个线程从这个队列里获取数据，然后合并这些数据。</p>
+</blockquote>
+</li>
+<li><p>Fork/Join使用两个类完成以上事情</p>
+<p>①ForkJoinTask：使用Fork/Join 框架，必须创建一个ForkJoin任务。它提供在任务中执行fork(),join()操作。</p>
+<p>   通常通过继承ForkJoin的子类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RecursiveAction:用于没有返回结果的任务</span><br><span class="line">RecursiveTask: 用于有返回结果的任务</span><br></pre></td></tr></table></figure>
+<p>②ForkJoinPool: ForkJoin需要通过ForkJoinPool执行</p>
+<blockquote>
+<p>任务分割出的子任务会添加到当前工作线程所维护的双端队列中，进入队列的头部。当工作线程队列里没有任务，他会随机从其他工作线程队列的尾部获取一个任务</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>–未完。。。待续。。。。</p>
+
       
 
       
@@ -214,6 +245,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">fork/join</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -307,7 +353,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">3.</span> <span class="toc-text">原理</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -419,11 +465,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
+                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -431,7 +481,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
+                <a href="javascript:void(0)" class="js-tag color5">fork/join</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -443,19 +493,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ORM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">主从配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ORM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,19 +517,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">jdk，cglib</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -491,15 +541,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">事务</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">范式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">事务</a>
               </li>
              
               <li class="article-tag-list-item">
