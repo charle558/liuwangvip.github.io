@@ -156,6 +156,206 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Concurrent-Fork-Join框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/10/Concurrent-Fork-Join框架/">Concurrent-Fork/Join框架</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/10/Concurrent-Fork-Join框架/" class="archive-article-date">
+  	<time datetime="2018-07-10T15:03:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/10/Concurrent-Fork-Join框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Concurrent-Executor框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/10/Concurrent-Executor框架/">Concurrent-Executor框架</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/10/Concurrent-Executor框架/" class="archive-article-date">
+  	<time datetime="2018-07-10T15:03:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="主要组成部分"><a href="#主要组成部分" class="headerlink" title="主要组成部分"></a>主要组成部分</h3><ul>
+<li><p>任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">被执行的任务需要实现的接口：Runnable接口或Callable接口</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>任务的执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">任务执行的核心接口:Executor，以及继承它的ExecutorService接口。</span><br><span class="line">Executor框架有两个关键的类实现了ExecutorService接口：ThreadPoolExecutor 和 ScheduledThreadPoolExecutor。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Executor</p>
+<blockquote>
+<p>Executor 是一个接口，它是Executor框架的基础，他将任务的提交与任务的执行分离。</p>
+</blockquote>
+</li>
+<li><p>ThreadPoolExecutor</p>
+<img src="/2018/07/10/Concurrent-Executor框架/ThreadPool类图.png" title="类图">
+<blockquote>
+<p>是线程池的核心实现类，用来执行被提交的任务</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor 通常是使用工厂类Executors来创建。Executors提供三种可以满足常见应用场景的线程池：SingleThreadExecutor,FixedThreadExecutor和CachedThreadPool;</span><br><span class="line">本质是调用了ThreadPoolExecutor的构造函数创建。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ThreadPoolExecutor构造函数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(    <span class="keyword">int</span> corePoolSize,//核心线程数</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">int</span> maximumPoolSize,//最大线程数</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">long</span> keepAliveTime,//存活时间</span></span></span><br><span class="line"><span class="function"><span class="params">                              TimeUnit unit,//存活时间的单位</span></span></span><br><span class="line"><span class="function"><span class="params">                              BlockingQueue&lt;Runnable&gt; workQueue,//工作队列</span></span></span><br><span class="line"><span class="function"><span class="params">                              ThreadFactory threadFactory,//线程工厂</span></span></span><br><span class="line"><span class="function"><span class="params">                              RejectedExecutionHandler handler//饱和策略</span></span></span><br><span class="line"><span class="function"><span class="params">                              )</span></span></span><br><span class="line"><span class="function"> <span class="comment">//工作队列</span></span></span><br><span class="line"><span class="function">  1.SynchronousQueue    --一个不存储元素的阻塞队列 Executors.newCachedThreadPool</span></span><br><span class="line"><span class="function">  2.LinkedBlockingQueue --基于链表的阻塞队列 Executors.newFixedThreadPool</span></span><br><span class="line"><span class="function">  3.ArrayBlockingQueue  --基于数组的阻塞队列</span></span><br><span class="line"><span class="function">  4.PriorityBlockQueue  --基于优先级的队列</span></span><br><span class="line"><span class="function"> <span class="comment">//线程工厂</span></span></span><br><span class="line"><span class="function">  1. Executors.<span class="title">defaultThreadFactory</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  2. 实现ThreadFactory接口</span></span><br><span class="line"><span class="function"> <span class="comment">//饱和策略</span></span></span><br><span class="line"><span class="function"> 1. ThreadPoolExecutor.AbortPolicy   --抛出运行异常  默认</span></span><br><span class="line"><span class="function"> 2. ThreadPoolExecutor.CallerRunsPolicy  --只用调用者所在的线程运行任务</span></span><br><span class="line"><span class="function"> 3. ThreadPoolExecutor.DiscardPolicy  --丢弃</span></span><br><span class="line"><span class="function"> 4. ThreadPoolExecutor.DiscardOldestPolicy --丢弃队列里面最近的一个任务，执行当前的任务</span></span><br></pre></td></tr></table></figure>
+<p>(一) SingleThreadExecutor</p>
+<blockquote>
+<p>创建一个线程来执行提交的任务，适用于顺序的执行任务，任意时间不会出现多个线程执行任务。</p>
+<p>使用LinkedBlockingQueue 基于链表的无界队列</p>
+</blockquote>
+<p>(二) FixedThreadExecutor</p>
+<blockquote>
+<p>创建固定线程数线程池。适用于为了满足资源管理器，限制线程数场景，适用于负载比较重的服务器</p>
+<p>使用LinkedBlockingQueue 基于链表的无界队列。</p>
+</blockquote>
+<p>(三) CachedThreadPool</p>
+<blockquote>
+<p>创建一个无界的线程池。使用SynchronousQueue队列，允许线程空闲一定时间后才回收。</p>
+<p>适用于短期异步任务，偶尔任务比较多的负载较轻的服务器。</p>
+</blockquote>
+</li>
+<li><p>ScheduledThreadPoolExecutor</p>
+<blockquote>
+<p>是线程池的核心实现类，可以在给定延时后或周期执行任务</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>异步计算的结果</p>
+<ul>
+<li><p>Future</p>
+<blockquote>
+<p>Future接口和实现了Future接口的FutureTask，代表异步运算的结果</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">concurrent</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Executor</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/10/Concurrent-Executor框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-三大范式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -276,11 +476,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">事务</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">事务</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
@@ -808,174 +1008,6 @@
 
 
   
-    <article id="post-Concurrent-Lock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/Concurrent-Lock/">Concurrent-Lock</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/03/Concurrent-Lock/" class="archive-article-date">
-  	<time datetime="2018-07-02T17:29:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-        
-          <a class="article-more-a" href="/2018/07/03/Concurrent-Lock/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">concurrent</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AQS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/03/Concurrent-Lock/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多线程之JMM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/多线程之JMM/">多线程之JMM</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/03/多线程之JMM/" class="archive-article-date">
-  	<time datetime="2018-07-02T17:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-        
-          <a class="article-more-a" href="/2018/07/03/多线程之JMM/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JMM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/03/多线程之JMM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1085,6 +1117,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ConcurrentHashMap</a>
               </li>
              
@@ -1117,14 +1153,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">jdk，cglib</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
@@ -1133,15 +1161,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">范式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">事务</a>
+                <a href="javascript:void(0)" class="js-tag color5">jdk，cglib</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,6 +1174,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cxf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">事务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">范式</a>
               </li>
              
               <li class="article-tag-list-item">
