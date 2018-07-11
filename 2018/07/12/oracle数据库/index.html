@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://liuwangvip.github.io">
-  <title>Tag: 数据库 | Charle</title>
+  <title>oracle数据库 | Charle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="八小时之内求生存，八小时之外谋发展">
-<meta name="keywords" content="java，网络工程，jquery，just do it">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Charle">
-<meta property="og:url" content="https://liuwangvip.github.io/tags/数据库/index.html">
+  <meta name="keywords" content="java,数据库,pl&#x2F;sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oracle数据库">
+<meta property="og:url" content="https://liuwangvip.github.io/2018/07/12/oracle数据库/index.html">
 <meta property="og:site_name" content="Charle">
-<meta property="og:description" content="八小时之内求生存，八小时之外谋发展">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-11T18:52:33.260Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Charle">
-<meta name="twitter:description" content="八小时之内求生存，八小时之外谋发展">
+<meta name="twitter:title" content="oracle数据库">
   
     <link rel="alternative" href="/atom.xml" title="Charle" type="application/atom+xml">
   
@@ -154,36 +152,144 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-oracle数据库" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/12/oracle数据库/" class="archive-article-date">
-  	<time datetime="2018-07-11T17:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/12/oracle数据库/">oracle数据库</a>
+    <h1 class="article-title" itemprop="name">
+      oracle数据库
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/07/12/oracle数据库/" class="archive-article-date">
+  	<time datetime="2018-07-11T17:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<a id="more"></a>
+<h3 id="PL-SQL"><a href="#PL-SQL" class="headerlink" title="PL/SQL"></a>PL/SQL</h3><blockquote>
+<p>是oracle对sql的扩展：sql+过程语言</p>
+</blockquote>
+<ul>
+<li><p>程序结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">declare</span><br><span class="line">	--定义部分（变量的定义，光标的定义，异常的定义)</span><br><span class="line">begin</span><br><span class="line">	--程序的主体</span><br><span class="line">exception</span><br><span class="line">    --程序执行异常捕获处理</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基本数据类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">char,varchar2,date,number,boolean,long</span><br><span class="line"></span><br><span class="line">var1 char(100);</span><br><span class="line">var2 date;</span><br><span class="line">var3 number;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用型变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_name student.sname%type;  --定义引用变量my_name ,定义为student表的name属性的类型</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>记录型变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stu_row student%rowtype; --定义记录型变量stu_row,类型为student表的一行。</span><br><span class="line"></span><br><span class="line">stu_row.name :=&quot;zhangsan&quot;; --使用stu_row 一行中属性name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>光标类型</p>
+<blockquote>
+<p>光标表示结果集(ResultSet)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CURSOR 光标名 [(参数名 数据类型,...)]</span><br><span class="line">cursor c1 is select * from student; --定义了光标c1，指向查询语句的结果集。</span><br><span class="line">open c1; --打开光标，从光标取值</span><br><span class="line">close c1; --关闭光标</span><br><span class="line"></span><br><span class="line">fetch c1 into stu_row; --获取光标当前指向行的值赋值个stu_row</span><br></pre></td></tr></table></figure>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">set serveroutput on</span><br><span class="line">declare</span><br><span class="line"> cursor cstu is select sname,sid from student;</span><br><span class="line"> pname student.sname%type;</span><br><span class="line"> psid student.sid%type;</span><br><span class="line">begin</span><br><span class="line">	open cursor;</span><br><span class="line">		loop</span><br><span class="line">			fetch cstu into pname,psid;</span><br><span class="line">			--循环退出条件</span><br><span class="line">			exit when cstu%notfound;</span><br><span class="line">			--打印</span><br><span class="line">			dbms_output.put_line(&apos;姓名:&apos;||pname||&apos;学号&apos;||psid)；</span><br><span class="line">	end loop;</span><br><span class="line">close cursor;</span><br><span class="line">end;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>带参数的光标</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">set serveroutput on</span><br><span class="line">declare</span><br><span class="line"> --定义待参数的光标</span><br><span class="line"> <span class="function">cursor <span class="title">cstu</span><span class="params">(psid)</span> is select sname from student where sid </span>= psid;</span><br><span class="line"> psname student.sname%type;</span><br><span class="line">begin</span><br><span class="line">	--打开光标，查询学号为<span class="number">10</span>的学生姓名</span><br><span class="line">	<span class="function">open <span class="title">curor</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">	loop</span><br><span class="line">		fetch cstu into psname;</span><br><span class="line">		exit when cstu%notfound;</span><br><span class="line">		dbms_output.put_line(psname);</span><br><span class="line">	end loop;</span><br><span class="line">end;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>PL/SQL 分支循环结构</p>
+<ul>
+<li><p>条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if 条件 then 语句；</span><br><span class="line">  elsif 条件 then 语句；</span><br><span class="line">  else 语句；</span><br><span class="line">  end if；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">while 条件 loop</span><br><span class="line">语句；</span><br><span class="line">end loop;</span><br><span class="line"></span><br><span class="line">loop</span><br><span class="line">exit when 条件  --退出循环条件</span><br><span class="line">语句；</span><br><span class="line">end loop;</span><br><span class="line"></span><br><span class="line">for 集合的每一项 in 集合 loop</span><br><span class="line">语句；</span><br><span class="line">end loop；</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>异常exception</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">set serveroutput on</span><br><span class="line">declare </span><br><span class="line">  pname student.sname%type;</span><br><span class="line">begin</span><br><span class="line">	select sname into pname from student where sid =1000;</span><br><span class="line">exception</span><br><span class="line">	when no_data_found when dbms_output.put_line(&quot;没有找到数据&quot;)；</span><br><span class="line">	when others then dbms_output.put_line(&quot;其他异常&quot;);</span><br><span class="line">end;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="存储过程，存储函数"><a href="#存储过程，存储函数" class="headerlink" title="存储过程，存储函数"></a>存储过程，存储函数</h3><ul>
+<li><p>存储过程结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create [or replace] procedure [过程名]（参数名 in/out 参数类型）</span><br><span class="line">as</span><br><span class="line"> -- 参数定义</span><br><span class="line">begin</span><br><span class="line"> --语句</span><br><span class="line">end;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存储函数结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create [or replace] function 函数名（参数名 in/out 参数类型)</span><br><span class="line">return 返回值类型</span><br><span class="line">as</span><br><span class="line">--变量定义</span><br><span class="line">begin</span><br><span class="line">--语句</span><br><span class="line">end;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--方式一</span><br><span class="line">exec 过程名(参数);</span><br><span class="line">--方式二</span><br><span class="line">begin</span><br><span class="line">  过程名(参数)；</span><br><span class="line">end;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="在应用程序中访问存储过程，函数"><a href="#在应用程序中访问存储过程，函数" class="headerlink" title="在应用程序中访问存储过程，函数"></a>在应用程序中访问存储过程，函数</h3><ul>
+<li>创建jdbc连接</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDBCUtils</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String driver = <span class="string">"oracle.jdbc.OracleDriver"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String url=<span class="string">"jdbc:oracle:thin:@localhost:1521:orcl"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String username = <span class="string">"jsrx"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String password =<span class="string">"123456"</span>;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Class.forName(driver);</span><br><span class="line">        &#125;<span class="keyword">catch</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ExceptionInInitializerError(e);</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> DriverManager.getConnection(url,username,password);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(SQLException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(Connection conn,Statement st,ResultSet rs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(rs!= <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                rs.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span>(SQLException e)&#123;</span><br><span class="line">                e.printStactTrace;</span><br><span class="line">            &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">                rs =<span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(st!= <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                st.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span>(SQLException e)&#123;</span><br><span class="line">                e.printStactTrace;</span><br><span class="line">            &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">                st =<span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(conn!= <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125;<span class="keyword">catch</span>(SQLException e)&#123;</span><br><span class="line">                e.printStactTrace;</span><br><span class="line">            &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">                conn =<span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>访问存储过程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestProcedure</span></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testProcedure</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String sql =<span class="string">"&#123;call queryInfo(?,?,?)&#125;"</span>;</span><br><span class="line">        Connection conn =<span class="keyword">null</span></span><br><span class="line">        CallableStatement call =<span class="keyword">null</span>;</span><br><span class="line">        ResultSet rs =<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            conn =JDBCUtils.getConnection();</span><br><span class="line">            call = conn.prepareCall(sql);</span><br><span class="line">            <span class="comment">//输入参数赋值</span></span><br><span class="line">            call.setInt(<span class="number">1</span>,<span class="number">10</span>);</span><br><span class="line">           <span class="comment">//输出参数申明类型</span></span><br><span class="line">            call.registerOutParameter(<span class="number">2</span>,OracleTypes.Varchar);</span><br><span class="line">            call.registerOutParameter(<span class="number">3</span>,OracleTypes.CURSOR);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//执行调用</span></span><br><span class="line">            call.execute();</span><br><span class="line">            String name =call.getString(<span class="number">2</span>);</span><br><span class="line">            rs =((OracleCallableStatement)call).getCursor(<span class="number">3</span>);</span><br><span class="line">            <span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">                String password =rs.getString(<span class="string">"password"</span>);</span><br><span class="line">		   &#125;</span><br><span class="line">            <span class="keyword">catch</span>(Execption e)&#123;</span><br><span class="line">                e.printStactTrace();  </span><br><span class="line">            &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">                JDBCUtils.release(conn,call,rs);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFunction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String sql =<span class="string">"&#123;? call queryname(?)&#125;"</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            conn =JDBCUtils.getConnection();</span><br><span class="line">            call = conn.prepareCall(sql);</span><br><span class="line">           </span><br><span class="line">           <span class="comment">//输出参数申明类型</span></span><br><span class="line">            call.registerOutParameter(<span class="number">1</span>,OracleTypes.Varchar);</span><br><span class="line">           <span class="comment">//输入参数赋值</span></span><br><span class="line">            call.setInt(<span class="number">2</span>,<span class="number">100</span>);</span><br><span class="line">            <span class="comment">//执行调用</span></span><br><span class="line">            call.execute();</span><br><span class="line">            </span><br><span class="line">            String  name = call.getDouble(<span class="number">1</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">catch</span>(Execption e)&#123;</span><br><span class="line">                e.printStactTrace();  </span><br><span class="line">            &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">                JDBCUtils.release(conn,call,<span class="keyword">null</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="oracle常用函数"><a href="#oracle常用函数" class="headerlink" title="oracle常用函数"></a>oracle常用函数</h3><ul>
+<li><p>列转行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>to_date(),to_char(),to_number,nvl(),sysdate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>case   when  then  end</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分组函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,107 +309,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://liuwangvip.github.io/2018/07/12/oracle数据库/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/10/三大范式/" class="archive-article-date">
-  	<time datetime="2018-07-09T16:45:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-10</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/10/Concurrent-Fork-Join框架/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Concurrent-Fork/Join框架</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/10/三大范式/">三大范式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">范式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PL-SQL"><span class="toc-number">1.</span> <span class="toc-text">PL/SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程，存储函数"><span class="toc-number">2.</span> <span class="toc-text">存储过程，存储函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在应用程序中访问存储过程，函数"><span class="toc-number">3.</span> <span class="toc-text">在应用程序中访问存储过程，函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oracle常用函数"><span class="toc-number">4.</span> <span class="toc-text">oracle常用函数</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/09/事务/" class="archive-article-date">
-  	<time datetime="2018-07-09T13:30:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-09</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/09/事务/">事务</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">事务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -326,9 +444,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
