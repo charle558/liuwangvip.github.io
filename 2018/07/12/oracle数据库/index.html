@@ -14,9 +14,11 @@
 <meta property="og:url" content="https://liuwangvip.github.io/2018/07/12/oracle数据库/index.html">
 <meta property="og:site_name" content="Charle">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-11T18:52:33.260Z">
+<meta property="og:image" content="https://liuwangvip.github.io/2018/07/12/oracle数据库/数据导出.png">
+<meta property="og:updated_time" content="2018-07-12T03:06:07.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle数据库">
+<meta name="twitter:image" content="https://liuwangvip.github.io/2018/07/12/oracle数据库/数据导出.png">
   
     <link rel="alternative" href="/atom.xml" title="Charle" type="application/atom+xml">
   
@@ -251,6 +253,15 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="Oracle-数据导入到导出"><a href="#Oracle-数据导入到导出" class="headerlink" title="Oracle 数据导入到导出"></a>Oracle 数据导入到导出</h3><ul>
+<li><p>存储过程函数，表导出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 使用PL/SQL Developer 导出数据</span><br><span class="line"><span class="number">2</span>. 点击工具-&gt;导出用户对象-&gt;选择用户，选择要导出的对象（表，函数，存储过程等），选择导出位置</span><br><span class="line"><span class="number">3</span>. 可选项：单个文件（所有数据导出到一个文件中）；每个对象文件（每个对象创建一个文件</span><br></pre></td></tr></table></figure>
+<img src="/2018/07/12/oracle数据库/数据导出.png" title="导出数据">
+</li>
+<li><p>存储过程函数，表 导入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用 sqlplus 命令来导入数据</span><br><span class="line">sqlplus username/password@192.168.12.103:1521/orcl @fn_sp.sql</span><br><span class="line">执行结果会生成一个<span class="built_in">log</span>文件。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
 
@@ -402,7 +413,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PL-SQL"><span class="toc-number">1.</span> <span class="toc-text">PL/SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程，存储函数"><span class="toc-number">2.</span> <span class="toc-text">存储过程，存储函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在应用程序中访问存储过程，函数"><span class="toc-number">3.</span> <span class="toc-text">在应用程序中访问存储过程，函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oracle常用函数"><span class="toc-number">4.</span> <span class="toc-text">oracle常用函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PL-SQL"><span class="toc-number">1.</span> <span class="toc-text">PL/SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储过程，存储函数"><span class="toc-number">2.</span> <span class="toc-text">存储过程，存储函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在应用程序中访问存储过程，函数"><span class="toc-number">3.</span> <span class="toc-text">在应用程序中访问存储过程，函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oracle常用函数"><span class="toc-number">4.</span> <span class="toc-text">oracle常用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Oracle-数据导入到导出"><span class="toc-number">5.</span> <span class="toc-text">Oracle 数据导入到导出</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -514,19 +525,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">AQS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,10 +570,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">aop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,7 +609,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">事务</a>
+                <a href="javascript:void(0)" class="js-tag color4">aop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -619,6 +626,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">regex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">事务</a>
               </li>
             
             <div class="clearfix"></div>
