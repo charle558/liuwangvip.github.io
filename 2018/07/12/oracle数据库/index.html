@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Charle">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://liuwangvip.github.io/2018/07/12/oracle数据库/数据导出.png">
-<meta property="og:updated_time" content="2018-07-12T03:06:07.598Z">
+<meta property="og:updated_time" content="2018-07-21T10:17:23.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle数据库">
 <meta name="twitter:image" content="https://liuwangvip.github.io/2018/07/12/oracle数据库/数据导出.png">
@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/img/Charle1.jpg" class="js-avatar">
+			<img src="/assets/img/face.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Chalre</a></h1>
@@ -105,7 +105,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/img/Charle1.jpg" class="js-avatar">
+				<img src="/assets/img/face.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Chalre</h1>
@@ -241,16 +241,16 @@
 </ul>
 <h3 id="oracle常用函数"><a href="#oracle常用函数" class="headerlink" title="oracle常用函数"></a>oracle常用函数</h3><ul>
 <li><p>列转行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--按用户分组，把每组的数据汇合（每个用户会的语言和级别    英语：六级；德语：三级）</span><br><span class="line">left join(</span><br><span class="line">            SELECT</span><br><span class="line">                    C_BH_USER,</span><br><span class="line">                    REPLACE(wm_concat((N_WYYZ||&apos;:&apos;||TO_CHAR(N_WYJB))),&apos;,&apos;,&apos;;&apos;) as n_wyjb</span><br><span class="line">              FROM t_ryxx_wyxx</span><br><span class="line">              WHERE</span><br><span class="line">                   C_BH_USER IS NOT NULL</span><br><span class="line">                   and D_ZSHQSJ &lt;= endTime</span><br><span class="line">                   GROUP BY C_BH_USER</span><br><span class="line">        )wyxx on wyxx.c_bh_user = u.c_id</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>to_date(),to_char(),to_number,nvl(),sysdate</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">to_date(&apos;2018-08-08&apos;)   --将字符串转换成时间</span><br><span class="line">to_char(sysdate,&apos;yyyy&apos;)  </span><br><span class="line">to_number(&apos;10&apos;)  --转换成数字</span><br><span class="line">nvl(arg0,arg1)  --arg0 为 null 区arg1的值</span><br><span class="line">sysdate  --当前时间</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>case   when  then  end</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(case when a=1 and x=2 or y= 3 then 100 else 200 end) as money</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>分组函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">--按照 c_bh_user 分组，然后按 dt_cjsj,dt_cjsj 排序；取这一组的第一条</span><br><span class="line"><span class="function">left <span class="title">join</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            select</span></span></span><br><span class="line"><span class="function"><span class="params">                  C_BH_USER,</span></span></span><br><span class="line"><span class="function"><span class="params">                  DT_JRSJ, </span></span></span><br><span class="line"><span class="function"><span class="params">                  n_zzmm   </span></span></span><br><span class="line"><span class="function"><span class="params">            from</span></span></span><br><span class="line"><span class="function"><span class="params">                (</span></span></span><br><span class="line"><span class="function"><span class="params">                select T_RYXX_ZZMM.*,row_number()</span> <span class="title">over</span><span class="params">(partition by c_bh_user order by DT_CJSJ desc,DT_CJSJ desc)</span> rw</span></span><br><span class="line"><span class="function">                from T_RYXX_ZZMM</span></span><br><span class="line"><span class="function">                where</span></span><br><span class="line"><span class="function">                     <span class="params">(dt_jrsj is <span class="keyword">null</span> or dt_jrsj &lt;= endTime)</span></span></span><br><span class="line"><span class="function">                     <span class="title">and</span> <span class="params">(dt_jssj &gt; endTime or dt_jssj is <span class="keyword">null</span>)</span></span></span><br><span class="line"><span class="function">                 )</span></span><br><span class="line"><span class="function">            where  rw </span>= <span class="number">1</span></span><br><span class="line">            )zzmm on zzmm.c_bh_user  = u.c_id</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="Oracle-数据导入到导出"><a href="#Oracle-数据导入到导出" class="headerlink" title="Oracle 数据导入到导出"></a>Oracle 数据导入到导出</h3><ul>
@@ -537,19 +537,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fork/join</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ConcurrentHashMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,6 +549,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">fork/join</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
@@ -569,7 +569,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pl/sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">hashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,11 +589,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pl/sql</a>
+                <a href="javascript:void(0)" class="js-tag color4">aop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,14 +613,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">aop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JMM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
@@ -630,6 +626,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">事务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JMM</a>
               </li>
             
             <div class="clearfix"></div>
