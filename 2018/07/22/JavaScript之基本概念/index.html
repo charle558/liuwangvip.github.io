@@ -14,9 +14,11 @@
 <meta property="og:url" content="https://liuwangvip.github.io/2018/07/22/JavaScript之基本概念/index.html">
 <meta property="og:site_name" content="Charle">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-22T06:12:07.909Z">
+<meta property="og:image" content="https://liuwangvip.github.io/2018/07/22/JavaScript之基本概念/001.jpg">
+<meta property="og:updated_time" content="2018-07-23T01:34:45.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript之基本概念">
+<meta name="twitter:image" content="https://liuwangvip.github.io/2018/07/22/JavaScript之基本概念/001.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Charle" type="application/atom+xml">
   
@@ -297,9 +299,8 @@
 </li>
 </ul>
 <pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.protype.hi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi,my name is '</span>+ <span class="keyword">this</span>.name+<span class="string">'age:'</span>+<span class="keyword">this</span>.age);</span><br><span class="line">&#125;</span><br><span class="line">Person.protype.less_num = <span class="number">2</span></span><br><span class="line">Person.protype.</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name,age,className</span>)</span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>,name,age)</span><br><span class="line">    <span class="keyword">this</span>.className =className;</span><br><span class="line">&#125;</span><br><span class="line">Student.protype = <span class="built_in">Object</span>.create(Person.protype);</span><br><span class="line">Student.protype.constructor = Student;</span><br><span class="line"></span><br><span class="line">Student.protype.hi = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi my name is '</span>+ <span class="keyword">this</span>.name+<span class="string">'I am '</span>+age+ <span class="string">'and from '</span>+ <span class="keyword">this</span>.className);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bosn = <span class="keyword">new</span> Student(<span class="string">"bosn"</span>,<span class="number">20</span>,<span class="number">1</span>);</span><br><span class="line">bosn.hi();</span><br><span class="line">bosn.walk();</span><br></pre></td></tr></table></figure>
-
-{% asset_img  001.jpg  设置 %}
-</code></pre><ul>
+</code></pre><img src="/2018/07/22/JavaScript之基本概念/001.jpg" title="设置">
+<ul>
 <li><p>正则表达式</p>
 <blockquote>
 <p>具体语法参考正则表达式文章。</p>
@@ -561,7 +562,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">fork/join</a>
+                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,11 +570,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">concurrent</a>
+                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Executor</a>
+                <a href="javascript:void(0)" class="js-tag color5">fork/join</a>
               </li>
              
               <li class="article-tag-list-item">
